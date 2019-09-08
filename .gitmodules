@@ -4,3 +4,6 @@
 [submodule "Blog-CRUD"]
 	path = Blog-CRUD
 	url = https://github.com/samaxwell/Blog-CRUD.git
+[submodule "configs"]
+	path = configs
+	url = https://github.com/samaxwell/configs.git
