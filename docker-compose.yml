@@ -1,0 +1,30 @@
+version: '2'
+services:
+  configserver:
+    image: seanimus/configserver
+    ports:
+       - "8888:8888"
+    networks:
+      - spring-cloud-network
+    environment:
+       ENCRYPT_KEY: "DEVELOP"
+
+  blogservice:
+    image: seanimus/blog-crud:v1
+    ports:
+      - "8080:8080"
+    networks:
+      - spring-cloud-network
+    environment:
+       ENCRYPT_KEY: "DEVELOP"
+       CONFIGSERVER_URI: "http://configserver:8888"
+       CONFIGSERVER_PORT: "8888"
+       PROFILE: "default"
+    links:
+      - configserver:configserver
+    depends_on:
+      - configserver
+
+networks:
+  spring-cloud-network:
+    driver: bridge
