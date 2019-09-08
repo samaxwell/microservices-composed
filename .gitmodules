@@ -1,0 +1,3 @@
+[submodule "configserver"]
+	path = configserver
+	url = https://github.com/samaxwell/configserver.git
