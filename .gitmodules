@@ -1,3 +1,6 @@
 [submodule "configserver"]
 	path = configserver
 	url = https://github.com/samaxwell/configserver.git
+[submodule "Blog-CRUD"]
+	path = Blog-CRUD
+	url = https://github.com/samaxwell/Blog-CRUD.git
