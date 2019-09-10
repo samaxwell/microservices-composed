@@ -21,6 +21,7 @@
 	<modules>
 		<module>Blog-CRUD</module>
 		<module>configserver</module>
+		<module>eureka</module>
 	</modules>
 	<build>
 		<plugins>
