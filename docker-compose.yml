@@ -34,6 +34,25 @@ services:
          - 'configserver:configserver'
       depends_on:
          - 'configserver'
+
+   userservice:
+      image: 'seanimus/userservice:v1'
+      ports:
+         - '8081:8081'
+      networks:
+         - 'spring-cloud-network'
+      environment:
+         PROFILE: 'default'
+         SERVER_PORT: '8081'
+         ENCRYPT_KEY: 'DEVELOP'
+         CONFIGSERVER_URI: 'http://configserver:8888'
+         CONFIGSERVER_PORT: '8888'
+         EUREKASERVER_URI: 'http://eurekaserver:8761/eureka/'
+         EUREKASERVER_PORT: '8761'
+      links:
+         - 'configserver:configserver'
+      depends_on:
+         - 'configserver'
 networks:
    spring-cloud-network:
       driver: 'bridge'
