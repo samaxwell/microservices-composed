@@ -14,3 +14,7 @@
 	path = eureka
 	url = https://github.com/samaxwell/eureka.git
 	branch = develop
+[submodule "userservice"]
+	path = userservice
+	url = https://github.com/samaxwell/userservice.git
+	branch = develop
