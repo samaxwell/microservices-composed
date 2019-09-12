@@ -18,3 +18,7 @@
 	path = userservice
 	url = https://github.com/samaxwell/userservice.git
 	branch = develop
+[submodule "zuul"]
+	path = zuul
+	url = https://github.com/samaxwell/zuul.git
+	branch = develop
