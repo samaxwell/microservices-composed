@@ -64,7 +64,7 @@ services:
          - 'spring-cloud-network'
       environment:
          PROFILE: 'default'
-         SERVER_PORT: '8081'
+         SERVER_PORT: '5555'
          ENCRYPT_KEY: 'DEVELOP'
          CONFIGSERVER_URI: 'http://configserver:8888'
          CONFIGSERVER_PORT: '8888'
