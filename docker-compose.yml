@@ -1,5 +1,6 @@
 version: '2'
 services:
+
    eurekaserver:
       image: 'seanimus/eureka:v1'
       ports:
@@ -13,49 +14,11 @@ services:
       networks:
          - 'spring-cloud-network'
       environment:
+         PROFILE: 'dev'
          ENCRYPT_KEY: 'DEVELOP'
          EUREKASERVER_URI: 'http://eurekaserver:8761/eureka/'
          EUREKASERVER_PORT: '8761'
-      depends_on:
-         - 'eurekaserver'
-   blogservice:
-      image: 'seanimus/blog-crud:v1'
-      ports:
-         - '8080:8080'
-      networks:
-         - 'spring-cloud-network'
-      environment:
-         PROFILE: 'default'
-         SERVER_PORT: '8080'
-         ENCRYPT_KEY: 'DEVELOP'
-         CONFIGSERVER_URI: 'http://configserver:8888'
-         CONFIGSERVER_PORT: '8888'
-         EUREKASERVER_URI: 'http://eurekaserver:8761/eureka/'
-         EUREKASERVER_PORT: '8761'
-      links:
-         - 'configserver:configserver'
-      depends_on:
-         - 'configserver'
-         - 'eurekaserver'
-   userservice:
-      image: 'seanimus/userservice:v1'
-      ports:
-         - '8081:8081'
-      networks:
-         - 'spring-cloud-network'
-      environment:
-         PROFILE: 'default'
-         SERVER_PORT: '8081'
-         ENCRYPT_KEY: 'DEVELOP'
-         CONFIGSERVER_URI: 'http://configserver:8888'
-         CONFIGSERVER_PORT: '8888'
-         EUREKASERVER_URI: 'http://eurekaserver:8761/eureka/'
-         EUREKASERVER_PORT: '8761'
-      links:
-         - 'configserver:configserver'
-      depends_on:
-         - 'configserver'
-         - 'eurekaserver'
+
    zuulservice:
       image: 'seanimus/zuul:v1'
       ports:
@@ -63,18 +26,61 @@ services:
       networks:
          - 'spring-cloud-network'
       environment:
-         PROFILE: 'default'
+         PROFILE: 'dev'
          SERVER_PORT: '5555'
          ENCRYPT_KEY: 'DEVELOP'
          CONFIGSERVER_URI: 'http://configserver:8888'
          CONFIGSERVER_PORT: '8888'
          EUREKASERVER_URI: 'http://eurekaserver:8761/eureka/'
          EUREKASERVER_PORT: '8761'
-      links:
-         - 'configserver:configserver'
+         #      links:
+         #         - 'configserver:configserver'
       depends_on:
          - 'configserver'
          - 'eurekaserver'
+
+   blogservice:
+      image: 'seanimus/blog-crud:v1'
+      ports:
+         - '8080:8080'
+      networks:
+         - 'spring-cloud-network'
+      environment:
+         PROFILE: 'dev'
+         SERVER_PORT: '8080'
+         ENCRYPT_KEY: 'DEVELOP'
+         CONFIGSERVER_URI: 'http://configserver:8888'
+         CONFIGSERVER_PORT: '8888'
+         EUREKASERVER_URI: 'http://eurekaserver:8761/eureka/'
+         EUREKASERVER_PORT: '8761'
+         #      links:
+         #         - 'configserver:configserver'
+      depends_on:
+         - 'configserver'
+         - 'eurekaserver'
+         - 'zuulservice'
+
+   userservice:
+      image: 'seanimus/userservice:v1'
+      ports:
+         - '8081:8081'
+      networks:
+         - 'spring-cloud-network'
+      environment:
+         PROFILE: 'dev'
+         SERVER_PORT: '8081'
+         ENCRYPT_KEY: 'DEVELOP'
+         CONFIGSERVER_URI: 'http://configserver:8888'
+         CONFIGSERVER_PORT: '8888'
+         EUREKASERVER_URI: 'http://eurekaserver:8761/eureka/'
+         EUREKASERVER_PORT: '8761'
+         #      links:
+         #         - 'configserver:configserver'
+      depends_on:
+         - 'eurekaserver'
+         - 'configserver'
+         - 'zuulservice'
+
 
 networks:
    spring-cloud-network:
