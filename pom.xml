@@ -24,6 +24,7 @@
 		<module>eureka</module>
 		<module>userservice</module>
 		<module>zuul</module>
+		<module>authservice</module>
 	</modules>
 	<build>
 		<plugins>

@@ -18,6 +18,25 @@ services:
          ENCRYPT_KEY: 'DEVELOP'
          EUREKASERVER_URI: 'http://eurekaserver:8761/eureka/'
          EUREKASERVER_PORT: '8761'
+   
+   authenticationservice:
+      image: 'seanimus/authserver:v1'
+      ports:
+         - '8901:8901'
+      networks:
+         - 'spring-cloud-network'
+      environment:
+         PROFILE: 'dev'
+         SERVER_PORT: '8901'
+         ENCRYPT_KEY: 'DEVELOP'
+         CONFIGSERVER_URI: 'http://configserver:8888'
+         CONFIGSERVER_PORT: '8888'
+         EUREKASERVER_URI: 'http://eurekaserver:8761/eureka/'
+         EUREKASERVER_PORT: '8761'
+      depends_on:
+         - 'configserver'
+         - 'eurekaserver'
+         
 
    zuulservice:
       image: 'seanimus/zuul:v1'
