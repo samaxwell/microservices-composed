@@ -30,3 +30,7 @@
 	path = sba
 	url = https://github.com/samaxwell/sba.git
 	branch = develop
+[submodule "blog-ui"]
+	path = blog-ui
+	url = https://github.com/samaxwell/blog-ui
+	branch = develop
