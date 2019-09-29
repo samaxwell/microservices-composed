@@ -19,23 +19,23 @@ services:
          EUREKASERVER_URI: 'http://eurekaserver:8761/eureka/'
          EUREKASERVER_PORT: '8761'
    
-   authenticationservice:
-      image: 'seanimus/authserver:v1'
-      ports:
-         - '8901:8901'
-      networks:
-         - 'spring-cloud-network'
-      environment:
-         PROFILE: 'dev'
-         SERVER_PORT: '8901'
-         ENCRYPT_KEY: 'DEVELOP'
-         CONFIGSERVER_URI: 'http://configserver:8888'
-         CONFIGSERVER_PORT: '8888'
-         EUREKASERVER_URI: 'http://eurekaserver:8761/eureka/'
-         EUREKASERVER_PORT: '8761'
-      depends_on:
-         - 'configserver'
-         - 'eurekaserver'
+         #   authenticationservice:
+         #      image: 'seanimus/authserver:v1'
+         #      ports:
+         #         - '8901:8901'
+         #      networks:
+         #         - 'spring-cloud-network'
+         #      environment:
+         #         PROFILE: 'dev'
+         #         SERVER_PORT: '8901'
+         #         ENCRYPT_KEY: 'DEVELOP'
+         #         CONFIGSERVER_URI: 'http://configserver:8888'
+         #         CONFIGSERVER_PORT: '8888'
+         #         EUREKASERVER_URI: 'http://eurekaserver:8761/eureka/'
+         #         EUREKASERVER_PORT: '8761'
+         #      depends_on:
+         #         - 'configserver'
+         #         - 'eurekaserver'
          
 
    zuulservice:
@@ -52,12 +52,27 @@ services:
          CONFIGSERVER_PORT: '8888'
          EUREKASERVER_URI: 'http://eurekaserver:8761/eureka/'
          EUREKASERVER_PORT: '8761'
-         #      links:
-         #         - 'configserver:configserver'
       depends_on:
          - 'configserver'
          - 'eurekaserver'
 
+   sba:
+      image: 'seanimus/sba:v1'
+      ports:
+         - '9090:9090'
+      networks:
+         - 'spring-cloud-network'
+      environment:
+         PROFILE: 'dev'
+         SERVER_PORT: '9090'
+         CONFIGSERVER_URI: 'http://configserver:8888'
+         CONFIGSERVER_PORT: '8888'
+         EUREKASERVER_URI: 'http://eurekaserver:8761/eureka/'
+         EUREKASERVER_PORT: '8761'
+      depends_on:
+         - 'configserver'
+         - 'eurekaserver'
+         
    blogservice:
       image: 'seanimus/blog-crud:v1'
       ports:
@@ -72,8 +87,6 @@ services:
          CONFIGSERVER_PORT: '8888'
          EUREKASERVER_URI: 'http://eurekaserver:8761/eureka/'
          EUREKASERVER_PORT: '8761'
-         #      links:
-         #         - 'configserver:configserver'
       depends_on:
          - 'configserver'
          - 'eurekaserver'
@@ -93,8 +106,6 @@ services:
          CONFIGSERVER_PORT: '8888'
          EUREKASERVER_URI: 'http://eurekaserver:8761/eureka/'
          EUREKASERVER_PORT: '8761'
-         #      links:
-         #         - 'configserver:configserver'
       depends_on:
          - 'eurekaserver'
          - 'configserver'
