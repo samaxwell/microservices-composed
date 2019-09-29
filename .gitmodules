@@ -26,3 +26,7 @@
 	path = authservice
 	url = https://github.com/samaxwell/authservice.git
 	branch = develop
+[submodule "sba"]
+	path = sba
+	url = https://github.com/samaxwell/sba.git
+	branch = develop

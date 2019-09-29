@@ -25,6 +25,7 @@
 		<module>userservice</module>
 		<module>zuul</module>
 		<module>authservice</module>
+		<module>sba</module>
 	</modules>
 	<build>
 		<plugins>
